@@ -6,39 +6,53 @@ import {Card} from "../components/card"
 import {EntryBox} from "../components/entryBox"
 
 export class Home extends React.Component{
+  constructor(){
+    super();
 
-  UserInfo = [
+    this.state =
     {
-      firstName: "Bob",
-      LastName: "Coder"
-    },
-    {
-      firstName: "Smith",
-      LastName: "Gold"
-    },
-    {
-      firstName: "tester",
-      LastName: "Testerson"
-    },
+      UserInfo: [
+        {
+          FirstName: "Bob",
+          LastName: "Coder"
+        },
+        {
+          FirstName: "Smith",
+          LastName: "Gold"
+        },
+        {
+          FirstName: "tester",
+          LastName: "Testerson"
+        }
+      ]
+    };
 
-  ];
+  }
+
+  AddUser(FirstName, Lastname){
+    let newArray = this.state.UserInfo;
+    newArray.push({FirstName: FirstName, Lastname: Lastname});
+    this.setState({UserInfo: newArray});
+  }
 
   Users(){
     let users = [];
 
-    this.UserInfo.forEach((user) => {
-      users.push(<Link to={`/Info/${user.firstName}`} > <Card firstName={user.firstName} LastName={user.LastName} /> </Link>);
+    this.state.UserInfo.forEach((user) => {
+      users.push(<Link to={`/Info/${user.FirstName}`} > <Card firstName={user.FirstName} LastName={user.LastName} /> </Link>);
     });
+
     return users;
   }
 
   render() {
+
     return(
       <div style={{textAlign: 'center'}}>
         {this.Users()}
         <div style={{marginTop: '150px'}}>
         <Card>
-          <EntryBox />
+          <EntryBox onSave={(first, last) => this.AddUser(first, last)}/>
         </Card>
         </div>
       </div>
