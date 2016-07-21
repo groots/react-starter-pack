@@ -1,4 +1,4 @@
-# react-starter-pack
+# React-starter-pack
 A starting point for new react projects using node with a few common packages
 
 ##Installing node (Mac)
