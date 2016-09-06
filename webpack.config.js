@@ -8,9 +8,14 @@ module.exports = {
   devtool: debug ? "inline-sourcemap" : null,
   entry: "./index.js",
   output: {
-    path: __dirname + "/build/",
-    filename: "client.min.js"
+    path: __dirname + "/build",
+    filename: "client.min.js",
+    publicPath: "/"
   },
+  devServer: {
+  port: 8080,
+  historyApiFallback: true
+},
   module: {
     loaders: [
       {
