@@ -1,45 +1,23 @@
 import React from "react";
 import {Link} from "react-router";
+import {observer} from "mobx-react";
 
 
 import {Card} from "../components/card"
 import {EntryBox} from "../components/entryBox"
 
+@observer
 export class Home extends React.Component{
-  constructor(){
-    super();
-
-    this.state =
-    {
-      UserInfo: [
-        {
-          FirstName: "Bob",
-          LastName: "Coder"
-        },
-        {
-          FirstName: "Smith",
-          LastName: "Gold"
-        },
-        {
-          FirstName: "tester",
-          LastName: "Testerson"
-        }
-      ]
-    };
-
-  }
 
   AddUser(FirstName, Lastname){
-    let newArray = this.state.UserInfo;
-    newArray.push({FirstName: FirstName, Lastname: Lastname});
-    this.setState({UserInfo: newArray});
+    this.props.store.add(FirstName, Lastname);
   }
 
   Users(){
     let users = [];
 
-    this.state.UserInfo.forEach((user) => {
-      users.push(<Link to={`/Info/${user.FirstName}`} > <Card firstName={user.FirstName} LastName={user.LastName} /> </Link>);
+    this.props.store.users.forEach((user, i) => {
+      users.push(<Link key={i} to={`/Info/${user.firstName}`} > <Card key={i} firstName={user.firstName} LastName={user.lastName} /> </Link>);
     });
 
     return users;
