@@ -47,14 +47,14 @@ export class EntryBox extends React.Component{
         type="text"
         id="FirstName"
         placeholder='First Name'
-        value={this.state.FirstName}
+        value={this.state.FirstName || ""}
         onChange={(e)=>this.handleChange(e)}
       />
       <input
         type="text"
         id="LastName"
         placeholder='Last Name'
-        value={this.state.LastName}
+        value={this.state.LastName || ""}
         onChange={(e)=>this.handleChange(e)}
       />
       <div  onClick={() => this.saveNew()}>
